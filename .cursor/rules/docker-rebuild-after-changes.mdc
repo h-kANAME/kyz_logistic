@@ -1,0 +1,15 @@
+---
+description: Reconstruir Docker despues de cada cambio
+alwaysApply: true
+---
+
+# Regla Docker Post-Cambio
+
+- Despues de realizar cambios en codigo o configuracion del proyecto, reconstruir servicios con `docker compose up -d --build`.
+- Verificar estado con `docker compose ps`.
+- Si solo hubo cambios de backend o frontend y el usuario lo prefiere, se puede reconstruir el servicio afectado, pero por defecto reconstruir todo el stack.
+
+# Build de produccion del frontend
+
+- El artefacto para FTP (`frontend/dist/`) debe generarse **siempre** con Docker, nunca con `npm run build` en el host.
+- Comando desde la raiz del repo: `docker compose --profile build run --rm frontend_build`

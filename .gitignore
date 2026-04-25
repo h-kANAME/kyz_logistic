@@ -1,0 +1,58 @@
+# =========================
+# Credenciales y secretos
+# =========================
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.jks
+
+# =========================
+# Entornos y temporales
+# =========================
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+*.xlsx
+*.csv
+
+# =========================
+# Dependencias/build frontend
+# =========================
+frontend/node_modules/
+frontend/dist/
+
+# =========================
+# Directorios locales a excluir
+# =========================
+deploy/
+data/
+storage/
+*/storage/
+
+# =========================
+# Directorios de agentes
+# =========================
+.github/agents/
+.cursor/agents/
+backend/scripts/
+
+# =========================
+# SQL no versionables (backup/domicilios/deploy)
+# =========================
+database/*backup*.sql
+database/*domicilios*.sql
+database/*deploy*.sql

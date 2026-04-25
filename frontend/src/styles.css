@@ -1,0 +1,31 @@
+.page-enter {
+  animation: page-enter 380ms ease-out;
+}
+
+.stagger-item {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: rise-in 420ms ease-out forwards;
+}
+
+.stagger-item:nth-of-type(2) { animation-delay: 60ms; }
+.stagger-item:nth-of-type(3) { animation-delay: 120ms; }
+.stagger-item:nth-of-type(4) { animation-delay: 180ms; }
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rise-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

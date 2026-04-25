@@ -1,0 +1,33 @@
+Orden sugerido en phpMyAdmin (base: kyz_logistic o la que asigne el hosting)
+================================================================================
+
+INSTALACIÓN NUEVA
+-----------------
+1. database/schema.sql
+   - En hosting compartido: seleccionar antes la BD en phpMyAdmin o editar/omitir CREATE DATABASE si ya existe.
+
+2. database/seed.sql
+   - Opcional: datos iniciales (secciones, domicilios). Omitir si ya hay datos importados.
+
+BASE YA EXISTENTE (solo migraciones incrementales)
+--------------------------------------------------
+Ejecutar en este orden los que falten (son idempotentes o con IF NOT EXISTS donde aplica):
+
+3. database/migration_20260423_consultor_perfiles.sql
+4. database/migration_20260423_consultor_perfiles_retorno.sql
+5. database/migration_20260423_hojas_ruta.sql
+6. database/migration_20260423_llm_sugerencias.sql
+7. database/migration_20260424_asignaciones_jornada_orden_index.sql
+8. database/migration_20260424_lotes_mensuales_hojas_v2.sql
+9. database/migration_20260424_hojas_ruta_last_opened_batch_start.sql
+   - Debe ir DESPUÉS del paso 8 (añade columna después de next_offset).
+
+10. database/migration_20260424_hojas_ruta_jornada_id_nullable.sql
+   - Hace nullable jornada_id en hojas_ruta (hojas guardadas desde lote no tienen jornada).
+   - Requiere que exista la FK fk_hr_jornada; si en el servidor tiene otro nombre, ajustar el script.
+
+NO EJECUTAR EN PRODUCCIÓN COMO MIGRACIÓN
+----------------------------------------
+- database/backup_*.sql
+- database/domicilios_backup_*.sql
+(solo respaldos / restauración puntual)
